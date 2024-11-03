@@ -343,7 +343,7 @@ void ZigBeeComponent::esp_zb_task() {
 
   // reporting
   for (auto reporting_info : this->reporting_list) {
-    ESP_LOGI(TAG, "set reporting for cluster: %u", reporting_info.cluster_id);
+    ESP_LOGI(TAG, "set reporting for cluster: 0x%04x", reporting_info.cluster_id);
     esp_zb_zcl_attr_location_info_t attr_info = {
         .endpoint_id = reporting_info.ep,
         .cluster_id = reporting_info.cluster_id,
