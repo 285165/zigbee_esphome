@@ -44,7 +44,7 @@ void ZigBeeComponent::set_attr(uint8_t endpoint_id, uint16_t cluster_id, uint8_t
     ESP_LOGE(TAG, "Setting attribute failed! (0x%02x) (%d) ep: %d cluster_id: 0x%04x attr_id: 0x%04x role: %d", state,  static_cast<int>(reinterpret_cast<intptr_t>(value_p)), endpoint_id, cluster_id, attr_id, role);
     return;
   } else
-    ESP_LOGD(TAG, "Attribute set!");
+    ESP_LOGD(TAG, "Attribute set: (0x%02x) (%d) ep: %d cluster_id: 0x%04x attr_id: 0x%04x role: %d", state,  static_cast<int>(reinterpret_cast<intptr_t>(value_p)), endpoint_id, cluster_id, attr_id, role);
   esp_zb_lock_release();
 }
 
