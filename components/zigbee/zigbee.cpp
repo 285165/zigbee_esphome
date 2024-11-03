@@ -38,14 +38,14 @@ void ZigBeeComponent::set_attr(uint8_t endpoint_id, uint16_t cluster_id, uint8_t
                                void *value_p) {
   esp_zb_lock_acquire(portMAX_DELAY);
   esp_zb_zcl_status_t state = esp_zb_zcl_set_attribute_val(endpoint_id, cluster_id, role, attr_id, value_p, false);
-
+  esp_zb_lock_release();
+  
   // Check for error
   if (state != ESP_ZB_ZCL_STATUS_SUCCESS) {
     ESP_LOGE(TAG, "Setting attribute failed! status(0x%02x) value(0x%04x) ep: %d cluster_id: 0x%04x attr_id: 0x%04x role: %d", state,  static_cast<int16_t>(reinterpret_cast<intptr_t>(value_p)), endpoint_id, cluster_id, attr_id, role);
     return;
   } else
     ESP_LOGD(TAG, "Attribute set: status(0x%02x) value(0x%04x) ep: %d cluster_id: 0x%04x attr_id: 0x%04x role: %d", state,  static_cast<int16_t>(reinterpret_cast<intptr_t>(value_p)), endpoint_id, cluster_id, attr_id, role);
-  esp_zb_lock_release();
 }
 
 void ZigBeeComponent::set_report(uint8_t endpoint_id, uint16_t cluster_id, uint8_t role, uint16_t attr_id) {
@@ -93,7 +93,9 @@ void ZigBeeComponent::report() {
     cmd.clusterID = reporting_info.cluster_id;
     cmd.attributeID = reporting_info.attr_id;
     cmd.cluster_role = reporting_info.cluster_role;
+    esp_zb_lock_acquire(portMAX_DELAY);
     esp_zb_zcl_report_attr_cmd_req(&cmd);
+    esp_zb_lock_release();
   }
 }
 
