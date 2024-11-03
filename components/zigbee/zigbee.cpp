@@ -56,27 +56,27 @@ void ZigBeeComponent::set_report(uint8_t endpoint_id, uint16_t cluster_id, uint8
       .cluster_id = cluster_id,
       .cluster_role = role,
       .attr_id = attr_id,
-      .dst.short_addr = 0;
-      .dst.endpoint = 1;
-      .dst.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
-      .u.send_info.min_interval = 1;      /*!< Actual minimum reporting interval */
-      .u.send_info.max_interval = 0;      /*!< Actual maximum reporting interval */
-      .u.send_info.def_min_interval = 1;  /*!< Default minimum reporting interval */
-      .u.send_info.def_max_interval = 0;  /*!< Default maximum reporting interval */
-      .u.send_info.delta.s16 = 0;      
+      // .dst.short_addr = 0;
+      // .dst.endpoint = 1;
+      // .dst.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+      // .u.send_info.min_interval = 1;      /*!< Actual minimum reporting interval */
+      // .u.send_info.max_interval = 0;      /*!< Actual maximum reporting interval */
+      // .u.send_info.def_min_interval = 1;  /*!< Default minimum reporting interval */
+      // .u.send_info.def_max_interval = 0;  /*!< Default maximum reporting interval */
+      // .u.send_info.delta.s16 = 0;      
       // .flags = 1,
       // .run_time = 1,
       .manuf_code = ESP_ZB_ZCL_ATTR_NON_MANUFACTURER_SPECIFIC,
   };
 
-  // reporting_info.dst.short_addr = 0;
-  // reporting_info.dst.endpoint = 1;
-  // reporting_info.dst.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
-  // reporting_info.u.send_info.min_interval = 1;      /*!< Actual minimum reporting interval */
-  // reporting_info.u.send_info.max_interval = 0;      /*!< Actual maximum reporting interval */
-  // reporting_info.u.send_info.def_min_interval = 1;  /*!< Default minimum reporting interval */
-  // reporting_info.u.send_info.def_max_interval = 0;  /*!< Default maximum reporting interval */
-  // reporting_info.u.send_info.delta.s16 = 0;          /*!< Actual reportable change */
+  reporting_info.dst.short_addr = 0;
+  reporting_info.dst.endpoint = 1;
+  reporting_info.dst.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+  reporting_info.u.send_info.min_interval = 1;      /*!< Actual minimum reporting interval */
+  reporting_info.u.send_info.max_interval = 0;      /*!< Actual maximum reporting interval */
+  reporting_info.u.send_info.def_min_interval = 1;  /*!< Default minimum reporting interval */
+  reporting_info.u.send_info.def_max_interval = 0;  /*!< Default maximum reporting interval */
+  reporting_info.u.send_info.delta.s16 = 0;          /*!< Actual reportable change */
 
   this->reporting_list.push_back(reporting_info);
 }
