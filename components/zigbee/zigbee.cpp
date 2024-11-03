@@ -41,10 +41,10 @@ void ZigBeeComponent::set_attr(uint8_t endpoint_id, uint16_t cluster_id, uint8_t
 
   // Check for error
   if (state != ESP_ZB_ZCL_STATUS_SUCCESS) {
-    ESP_LOGE(TAG, "Setting attribute failed!");
+    ESP_LOGE(TAG, "Setting attribute failed! (%02x) ep: %d cluster_id: %04x attr_id: %04x role: %02x", state, endpoint_id, cluster_id, attr_id, role);
     return;
-  }
-  ESP_LOGD(TAG, "Attribute set!");
+  } else
+    ESP_LOGD(TAG, "Attribute set!");
   esp_zb_lock_release();
 }
 
